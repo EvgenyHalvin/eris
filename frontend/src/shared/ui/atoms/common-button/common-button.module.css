@@ -1,0 +1,34 @@
+.wrapCommon {
+  width: fit-content;
+  border: none;
+  border-radius: 16px;
+  padding: 8px 16px;
+  border: 2px #000000 solid;
+  background-color: #fff;
+  color: #000000;
+  height: 40px;
+  font-size: 16px;
+}
+
+.wrapCommon:hover {
+  transition: background 0.3s;
+  border-color: #2cd8ff;
+  cursor: pointer;
+}
+
+.wrapActive {
+  composes: wrapCommon;
+  border: none;
+  background: #000000;
+  color: #fff;
+}
+
+.largeFontSize {
+  font-size: 20px;
+  padding: 12px 20px;
+  height: 48px;
+}
+
+.smallFontSize {
+  font-size: 12px;
+}

@@ -1,0 +1,15 @@
+.content {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  flex-direction: column;
+}
+
+.message {
+  margin: 16px auto;
+  text-align: center;
+}
+
+.buttonWrap {
+  margin: 0 auto;
+}

@@ -1,0 +1,289 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "uyttv0ds5yydp"
+  },
+  "info": {
+    "title": "eris-api",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/events": {
+      "post": {
+        "summary": "",
+        "operationId": "post-events",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Events"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "This endpoint is needed to get events",
+        "tags": [
+          "eris"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/sortBy"
+          },
+          {
+            "$ref": "#/components/parameters/sortOrder"
+          }
+        ]
+      }
+    },
+    "/resources": {
+      "post": {
+        "summary": "",
+        "operationId": "post-resources",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resources"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "eris"
+        ],
+        "description": "This endpoint is needed to get resources",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourcesPayload"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListEvent": {
+        "title": "ListEvent",
+        "x-stoplight": {
+          "id": "04cnbjbkfd2bd"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "resourceId": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ResourcesPayload": {
+        "title": "ResourcesPayload",
+        "x-stoplight": {
+          "id": "qgk0cxrao3eqz"
+        },
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Events": {
+        "title": "Events",
+        "x-stoplight": {
+          "id": "hef933mh1a0pc"
+        },
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventGroup"
+            }
+          },
+          "total": {
+            "type": "number"
+          }
+        }
+      },
+      "EventGroup": {
+        "title": "EventGroup",
+        "x-stoplight": {
+          "id": "uizavrml0v5bp"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListEvent"
+            }
+          }
+        }
+      },
+      "Resource": {
+        "title": "Resource",
+        "x-stoplight": {
+          "id": "f752ee354wm1r"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "values": {
+            "$ref": "#/components/schemas/ResourceValues"
+          }
+        }
+      },
+      "ResourceValues": {
+        "title": "ResourceValues",
+        "x-stoplight": {
+          "id": "a9r3mzgr67a6m"
+        },
+        "type": "array",
+        "x-examples": {
+          "example-1": [
+            "string",
+            {
+              "value": 10,
+              "unit": "usd"
+            }
+          ]
+        },
+        "items": {
+          "oneOf": [
+            {
+              "type": "string",
+              "properties": {}
+            },
+            {
+              "$ref": "#/components/schemas/ResourceValue"
+            }
+          ]
+        }
+      },
+      "ResourceValue": {
+        "title": "ResourceValue",
+        "x-stoplight": {
+          "id": "zt38bfasixre6"
+        },
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      },
+      "Resources": {
+        "title": "Resources",
+        "x-stoplight": {
+          "id": "oe6k8qppxpupx"
+        },
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "page": {
+        "name": "page",
+        "in": "query",
+        "schema": {
+          "type": "number"
+        },
+        "description": "pagination page"
+      },
+      "sortBy": {
+        "name": "sortBy",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "DATE"
+          ]
+        },
+        "description": "sort by value"
+      },
+      "sortOrder": {
+        "name": "sortOrder",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "ASC",
+            "DESC"
+          ]
+        },
+        "description": "sort order"
+      }
+    }
+  }
+}

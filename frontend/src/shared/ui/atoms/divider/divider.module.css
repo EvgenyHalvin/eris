@@ -1,0 +1,13 @@
+.horizontal {
+  width: 100%;
+  background-color: rgb(160, 160, 160);
+  padding: 0.5px 0;
+  margin: 10px 0;
+}
+
+.vertical {
+  height: 100%;
+  background-color: rgb(160, 160, 160);
+  padding: 0 0.5px;
+  margin: 0 10px;
+}
