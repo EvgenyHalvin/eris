@@ -2,5 +2,5 @@
 
 ```
 yarn
-yarn sart
+yarn start
 ```
